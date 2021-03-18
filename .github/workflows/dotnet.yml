@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Move to Client
-      run: cd client
+      run: cd ClientServer
     - name: Restore dependencies
       run: dotnet restore
     - name: Build Client
