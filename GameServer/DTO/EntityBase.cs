@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer.Models
+namespace GameServer.DTO
 {
     public abstract class EntityBase  
     {  

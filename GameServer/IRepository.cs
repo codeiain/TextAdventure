@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using GameServer.DTO;
 using GameServer.Models;
 
 namespace GameServer

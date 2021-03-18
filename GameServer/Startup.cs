@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using GameServer.DTO;
 using GameServer.Models;
 using GameServer.Models.Settings;
 using GameServer.Services;
@@ -41,10 +42,12 @@ namespace GameServer
             var mongoConnectionString = configuration.GetSection("App:MongoSettings:ConnectionString").Value.Replace("{DB_NAME}",configuration.GetSection("App:MongoSettings:DatabaseName").Value);
             var redisConnectionString = configuration.GetSection("App:RedisSettings:ConnectionString").Value;
             
-            services.AddSingleton<IRepository<GameModel>, MongoDbRepository<GameModel>>();
-            services.AddSingleton<IRepository<GameStateModel>, MongoDbRepository<GameStateModel>>();
+            services.AddSingleton<IRepository<GameSchema>, MongoDbRepository<GameSchema>>();
+            services.AddSingleton<IRepository<GameStateSchema>, MongoDbRepository<GameStateSchema>>();
             services.AddSingleton<IGameStateService, GameStateService>();
             services.AddSingleton<IGameService, GameService>();
+            services.AddSingleton<ICartridgeService, CartridgeService>();
+            
             
             services.AddControllers();
             services.AddHealthChecks()
@@ -79,6 +82,7 @@ namespace GameServer
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GameServer v1"));
             }
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
 
             app.UseRouting();

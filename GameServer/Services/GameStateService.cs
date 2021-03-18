@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameServer.DTO;
 using GameServer.Models;
 
 namespace GameServer.Services
@@ -8,32 +9,30 @@ namespace GameServer.Services
     public class GameStateService : IGameStateService
     {
 
-        private IRepository<GameStateModel> _gameStateRepository;
+        private IRepository<GameStateSchema> _gameStateRepository;
 
         
-        public GameStateService(IRepository<GameStateModel> gameStateRepository)
+        public GameStateService(IRepository<GameStateSchema> gameStateRepository)
         {
             _gameStateRepository = gameStateRepository;
             
         }
-
-
-
-        public GameStateModel GetById(Guid gameId)
+        
+        public GameStateSchema GetById(Guid gameId)
         {
             return _gameStateRepository.GetById(gameId);
         }
 
-        public List<GameStateModel> FindGameStateforPlayerAndGame(Guid gameId, string playerName)
+        public List<GameStateSchema> FindGameStateforPlayerAndGame(Guid gameId, string playerName)
         {
             return _gameStateRepository.SearchFor(x => x.PlayerName == playerName && x.Id == gameId).ToList();
         }
 
-        public GameStateModel SaveGameState(GameStateModel stateModel)
+        public GameStateSchema SaveGameState(GameStateSchema stateSchema)
         {
-            if (_gameStateRepository.Insert(stateModel))
+            if (_gameStateRepository.Insert(stateSchema))
             {
-                return stateModel;
+                return stateSchema;
             }
 
             return null;

@@ -4,6 +4,6 @@ namespace GameServer.Services
 {
     public interface IGameService
     {
-        bool CreateNewGame(Guid catrideId);
+        bool CreateNewGame(string cartridgeName);
     }
 }

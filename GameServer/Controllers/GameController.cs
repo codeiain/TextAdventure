@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security;
 using System.Threading.Tasks;
+using GameServer.DTO;
 using GameServer.Models;
 using GameServer.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -24,16 +25,16 @@ namespace GameServer.Controllers
 
         [HttpPost]
         [Route(("/"))]
-        public bool CreateNewGame([FromBody] Guid catridgeId)
+        public bool CreateNewGame([FromBody] string catridgeId)
         {
             return _gameService.CreateNewGame(catridgeId);
         }
         
         [HttpPost]
         [Route("{gameId}")]
-        public GameStateModel JoinGame(Guid gameId,[FromBody] string playerInfo)
+        public GameStateSchema JoinGame(Guid gameId,[FromBody] string playerInfo)
         {
-            var newGameState = new GameStateModel()
+            var newGameState = new GameStateSchema()
             {
                 Id = gameId,
                 PlayerName = playerInfo
@@ -44,14 +45,14 @@ namespace GameServer.Controllers
 
         [HttpGet]
         [Route("{gameId}/state/{playerName}")]
-        public List<GameStateModel> GetGameStateOfPlayer(Guid gameId, string playerName)
+        public List<GameStateSchema> GetGameStateOfPlayer(Guid gameId, string playerName)
         {
             return _gameStateService.FindGameStateforPlayerAndGame(gameId, playerName);
         }
 
         [HttpPost]
         [Route("{gameId}/{playerName}/command")]
-        public GameStateModel SendCommandToGame(Guid gameId, string playerName, [FromBody] string action)
+        public GameStateSchema SendCommandToGame(Guid gameId, string playerName, [FromBody] string action)
         {
             var command = new CommandModel()
             {

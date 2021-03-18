@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using GameServer.DTO;
 using GameServer.Helpers;
 using GameServer.Models;
 using GameServer.Models.Settings;
@@ -86,13 +87,13 @@ namespace GameServer
   
         private string GetConnectionString()  
         {  
-            return _config.MongoSettingsDb.ConnectionString
+            return _config.MongoSettings.ConnectionString
                 .Replace("{DB_NAME}", GetDatabaseName());  
         }  
   
         private string GetDatabaseName()  
         {  
-            return _config.MongoSettingsDb.DatabaseName;  
+            return _config.MongoSettings.DatabaseName;  
         }  
   
         private void GetCollection()  

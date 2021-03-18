@@ -5,11 +5,13 @@ namespace GameServer.Models.Settings
     {
         public AppSettings()
         {
-            MongoSettingsDb = new MongoSettings();
+            MongoSettings = new MongoSettings();
             RedisSettings = new RedisSettings();
         }
 
-        public MongoSettings MongoSettingsDb { get; set; }
+        public MongoSettings MongoSettings { get; set; }
         public RedisSettings RedisSettings { get; set; }
+        
+        public string CartridgeLocation { get; set; }
     }
 }

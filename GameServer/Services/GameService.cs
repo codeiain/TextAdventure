@@ -1,24 +1,27 @@
 using System;
+using GameServer.DTO;
 using GameServer.Models;
 
 namespace GameServer.Services
 {
     public class GameService : IGameService
     {
-        private IRepository<GameModel> _gameRepository;
-        
-        public GameService(IRepository<GameModel> gameRepository)
+        private IRepository<GameSchema> _gameRepository;
+        private ICartridgeService _cartridgeService;
+        public GameService(IRepository<GameSchema> gameRepository, ICartridgeService cartridgeService)
         {
             _gameRepository = gameRepository;
+            _cartridgeService = cartridgeService;
         }
         
-        public bool CreateNewGame(Guid catrideId)
+        public bool CreateNewGame(string cartridgeName)
         {
             
-            var game = new GameModel()
+            var game = new GameSchema(_cartridgeService)
             {
-                CartrideId = catrideId
+                CartridgeName = cartridgeName
             };
+            game.PreSave();
             return _gameRepository.Insert(game);
         }
     }
