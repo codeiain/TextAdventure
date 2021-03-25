@@ -5,8 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using CartageServer.Models.Settings;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace CartageServer
 {
@@ -17,6 +21,18 @@ namespace CartageServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false)
+                .Build();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddOptions();
+            services.Configure<AppSettings>(configuration.GetSection("App"));
+            services.AddSingleton<AppSettings>(serviceProvider =>
+                serviceProvider.GetRequiredService<IOptions<AppSettings>>().Value);
+
+            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
