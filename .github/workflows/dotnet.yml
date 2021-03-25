@@ -43,3 +43,21 @@ jobs:
       run: dotnet build --no-restore
     - name: Test Game Server
       run: dotnet test --no-build --verbosity normal
+  build-CartageServer:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Move to CartageServer
+      run: cd CartageServer
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build Cartage Server
+      run: dotnet build --no-restore
+    - name: Test Cartage Server
+      run: dotnet test --no-build --verbosity normal
