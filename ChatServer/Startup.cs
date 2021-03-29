@@ -57,8 +57,8 @@ namespace ChatServer
 
                     
                     opt.AddHealthCheckEndpoint("ChatServer", "/healthz"); //map health check api
-                    opt.AddHealthCheckEndpoint("ClientServer", configuration.GetSection("App:WebApis:ClientServer").Value); //map health check api
-                    opt.AddHealthCheckEndpoint("GameServer", configuration.GetSection("App:WebApis:GameServer").Value);
+                    opt.AddHealthCheckEndpoint("ClientApiServer", configuration.GetSection("App:WebApis:ClientApiServer").Value); //map health check api
+                    opt.AddHealthCheckEndpoint("GameApiServer", configuration.GetSection("App:WebApis:GameApiServer").Value);
                 })
                 .AddInMemoryStorage();
         }
