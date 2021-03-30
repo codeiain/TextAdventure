@@ -29,8 +29,8 @@ namespace CacheServer
             services.Configure<AppSettings>(configuration.GetSection("App"));
             services.AddSingleton<AppSettings>(serviceProvider =>
                 serviceProvider.GetRequiredService<IOptions<AppSettings>>().Value);
+            services.AddSingleton<ICacheProvider, RedisCacheProvider>();
 
-            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

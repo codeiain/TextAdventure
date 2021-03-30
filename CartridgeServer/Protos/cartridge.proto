@@ -1,21 +1,21 @@
 syntax = "proto3";
 
-option csharp_namespace = "CartageServer";
+option csharp_namespace = "CartridgeServer";
 
-package cartage;
+package cartridge;
 
 // The greeting service definition.
-service Cartage {
+service Cartridge {
 	// Sends a greeting
-	rpc GetCartage (CartageRequest) returns (CartageReply);
+	rpc GetCartage (CartridgeRequest) returns (CartridgeReply);
 }
 
 // The request message containing the user's name.
-message CartageRequest {
+message CartridgeRequest {
 	string id = 1;
 }
 
 // The response message containing the greetings.
-message CartageReply {
+message CartridgeReply {
 	string message = 1;
 }

@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-option csharp_namespace = "CartageServer";
+option csharp_namespace = "CacheServer";
 
-package greet;
+package cache;
 
 // The greeting service definition.
-service Greeter {
+service Cache {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply);
 }
