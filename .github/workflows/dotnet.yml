@@ -18,6 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Move to Client
+      run: pwd
+    - name: Move to Client
       run: cd CacheServer
     - name: Restore dependencies
       run: dotnet restore CacheServer.csproj
