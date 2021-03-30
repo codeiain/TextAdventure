@@ -22,7 +22,7 @@ jobs:
     - name: Move to Client
       run: cd CacheServer
     - name: Restore dependencies
-      run: dotnet restore /CacheServer/CacheServer.csproj
+      run: dotnet restore ./CacheServer/CacheServer.csproj
     - name: Build Client
       run: dotnet build --no-restore CacheServer.csproj
     - name: Test Client
