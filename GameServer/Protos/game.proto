@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "GameServer";
+
+package GameServer;
+
+// The greeting service definition.
+service GameServer {
+	// Sends a greeting
+	rpc CreateNewGame (CatridgeRequest) returns (CatridgeReply);
+	rpc JoinGame (GameRequest) returns (JoinResponce);
+	rpc GetGameStateOfPlayer(GameRequest) returns (GameResponce);
+	rpc SendCommand(GameRequest) returns (GameResponce);
+}
+
+// The request message containing the user's name.
+
+message CatridgeRequest {
+	string Id = 1;
+}
+// The response message containing the greetings.
+message CatridgeReply {
+	string message = 1;
+}
+
+message GameRequest {
+	string gameId = 1;
+	string playerName = 2;
+	string action = 3;
+}
+
+message JoinResponce {
+	string message = 1;
+}
+
+message GameResponce{
+	string message = 1;
+}

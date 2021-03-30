@@ -1,26 +1,45 @@
-using GameApiServer.DTO;
+using System.Threading.Tasks;
+using GameAPIServer;
+using GameApiServer.Models.Settings;
+using Grpc.Net.Client;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace GameApiServer.Services
 {
     public class GameService : IGameService
     {
+        private readonly ILogger<GameService> _logger;
+        private AppSettings _config;
+        private readonly GameServer.GameServerClient _client;
 
-        private ICartridgeService _cartridgeService;
-        public GameService(ICartridgeService cartridgeService)
+        public GameService(ILogger<GameService> logger, AppSettings config)
         {
+            _logger = logger;
+            _config = config;
+            var channel = GrpcChannel.ForAddress(_config.GameServerAddress);
+            _client = new GameServer.GameServerClient(channel);
+        }
 
-            _cartridgeService = cartridgeService;
+
+        public async Task<CatridgeReply> CreateNewGame(CatridgeRequest request)
+        {
+            return await _client.CreateNewGameAsync(request);
+        }
+
+        public async Task<JoinResponce> JoinGame(GameRequest request)
+        {
+            return await _client.JoinGameAsync(request);
         }
         
-        public bool CreateNewGame(string cartridgeName)
+        public async Task<GameResponce> SendCommand(GameRequest request)
         {
-            
-            var game = new GameSchema(_cartridgeService)
-            {
-                CartridgeName = cartridgeName
-            };
-            game.PreSave();
-            return true;
+            return await _client.SendCommandAsync(request);
+        }
+
+        Task<List<GameResponce>> IGameService.GetGameStateOfPlayer(GameRequest request)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

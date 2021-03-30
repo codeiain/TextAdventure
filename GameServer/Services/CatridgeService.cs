@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
-using CartageServer;
+using CatridgeServer;
 using GameServer.Models.Settings;
-using Grpc.Core;
-using GameServer;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Logging;
 
@@ -12,7 +10,7 @@ namespace GameServer.Services
     {
         private readonly ILogger<CatridgeService> _logger;
         private AppSettings _config;
-        private Catridge.CatridgeClient _client;
+        private readonly Catridge.CatridgeClient _client;
 
         public CatridgeService(ILogger<CatridgeService> logger, AppSettings config)
         {
@@ -22,9 +20,9 @@ namespace GameServer.Services
             _client = new Catridge.CatridgeClient(channel);
         }
 
-        public async Task<CatridgeReply> GetCatridgeById(string Id)
+        public async Task<CatridgeServer.CatridgeReply> GetCatridgeById(string id)
         {
-             return await _client.GetCartageAsync(new CatridgeRequest { Id  = Id});
+            return await _client.GetCatridgeAsync(new CatridgeServer.CatridgeRequest { Id = id });
 
         }
 

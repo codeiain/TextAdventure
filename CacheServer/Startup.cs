@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using CacheServer.Models.Settings;
 using CacheServer.Services;
-using CartageServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -45,7 +44,7 @@ namespace CacheServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<CacheService>();
 
                 endpoints.MapGet("/", async context =>
                 {

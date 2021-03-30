@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
-using GameApiServer.DTO;
 using GameApiServer.Models.Settings;
 using GameApiServer.Services;
 using HealthChecks.UI.Client;
@@ -40,17 +39,8 @@ namespace GameApiServer
             services.Configure<AppSettings>(configuration.GetSection("App"));
             var mongoConnectionString = configuration.GetSection("App:MongoSettings:ConnectionString").Value.Replace("{DB_NAME}",configuration.GetSection("App:MongoSettings:DatabaseName").Value);
             var redisConnectionString = configuration.GetSection("App:RedisSettings:ConnectionString").Value;
-            
             services.AddSingleton<IGameService, GameService>();
-            services.AddSingleton<ICartridgeService, CartridgeService>();
-            
-            
             services.AddControllers();
-            services.AddHealthChecks()
-                .AddMongoDb(mongodbConnectionString: mongoConnectionString,
-                    name: "MongoDB",
-                    failureStatus: HealthStatus.Unhealthy)
-                .AddRedis(redisConnectionString, "Redis", HealthStatus.Unhealthy);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "GameApiServer", Version = "v1"});
@@ -62,8 +52,6 @@ namespace GameApiServer
                     opt.SetApiMaxActiveRequests(1); //api requests concurrency
                 
                     opt.AddHealthCheckEndpoint("GameApiServer", "/healthz"); //map health check api
-                    opt.AddHealthCheckEndpoint("ClientApiServer", configuration.GetSection("App:WebApis:ClientApiServer").Value);
-                    opt.AddHealthCheckEndpoint("ChatServer", configuration.GetSection("App:WebApis:ChatServer").Value);
                 })
                 .AddInMemoryStorage();
         }

@@ -4,6 +4,6 @@ namespace GameServer.Services
 {
     public interface ICatridgeService
     {
-        Task<CatridgeReply> GetCatridgeById(string Id);
+        Task<CatridgeServer.CatridgeReply> GetCatridgeById(string Id);
     }
 }

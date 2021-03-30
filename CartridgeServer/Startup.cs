@@ -44,7 +44,7 @@ namespace CartridgeServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<CartridgeService>();
 
                 endpoints.MapGet("/", async context =>
                 {

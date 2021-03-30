@@ -1,14 +1,15 @@
 using System.Threading.Tasks;
-using CartageServer;
+using CacheServer;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 
 namespace CacheServer.Services
 {
-    public class GreeterService : Greeter.GreeterBase
+    public class CacheService : Cache.CacheBase
     {
-        private readonly ILogger<GreeterService> _logger;
-        public GreeterService(ILogger<GreeterService> logger)
+        private readonly ILogger<CacheService> _logger;
+
+        public CacheService(ILogger<CacheService> logger)
         {
             _logger = logger;
         }

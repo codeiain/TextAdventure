@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
-using GameApiServer.DTO;
+using System.Threading.Tasks;
+using GameAPIServer;
 using GameApiServer.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,59 +11,46 @@ namespace GameApiServer.Controllers
     [Route("[controller]")]
     public class GameController : ControllerBase
     {
-        private IGameStateService _gameStateService;
         private IGameService _gameService;
 
-        public GameController(IGameService gameService, IGameStateService gameStateService)
+        public GameController(IGameService gameService)
         {
-            _gameStateService = gameStateService;
+
             _gameService = gameService;
         }
 
         [HttpPost]
         [Route(("/"))]
-        public bool CreateNewGame([FromBody] string catridgeId)
+        public async Task<CatridgeReply> CreateNewGame([FromBody] string catridgeId)
         {
-            return _gameService.CreateNewGame(catridgeId);
+            return await _gameService.CreateNewGame(new GameAPIServer.CatridgeRequest(){ Id = catridgeId });
         }
         
         [HttpPost]
         [Route("{gameId}")]
-        public GameStateSchema JoinGame(Guid gameId,[FromBody] string playerInfo)
+        public async Task<JoinResponce> JoinGame(Guid gameId,[FromBody] string playerInfo)
         {
-            var newGameState = new GameStateSchema()
+            var newGameState = new GameAPIServer.GameRequest()
             {
-                Id = gameId,
+                GameId = gameId.ToString(),
                 PlayerName = playerInfo
                 
             };
-            return _gameStateService.SaveGameState(newGameState);
+            return await _gameService.JoinGame(newGameState);
         }
 
         [HttpGet]
         [Route("{gameId}/state/{playerName}")]
-        public List<GameStateSchema> GetGameStateOfPlayer(Guid gameId, string playerName)
+        public void GetGameStateOfPlayer(Guid gameId, string playerName)
         {
-            return _gameStateService.FindGameStateforPlayerAndGame(gameId, playerName);
+            
         }
 
         [HttpPost]
         [Route("{gameId}/{playerName}/command")]
-        public GameStateSchema SendCommandToGame(Guid gameId, string playerName, [FromBody] string action)
+        public void SendCommandToGame(Guid gameId, string playerName, [FromBody] string action)
         {
-            var command = new CommandModel()
-            {
-                Action = action,
-                Context = new CommandContextModel()
-                {
-                    GameId = gameId,
-                    PlayerName = playerName
-                }
-            };
-            
-            //Add call here to command parser
-            
-            return null;
+
         }
     }
 }

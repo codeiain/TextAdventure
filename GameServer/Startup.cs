@@ -43,7 +43,7 @@ namespace GameServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<GameService>();
 
                 endpoints.MapGet("/", async context =>
                 {
