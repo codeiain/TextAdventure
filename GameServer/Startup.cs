@@ -28,7 +28,7 @@ namespace GameServer
             services.Configure<AppSettings>(configuration.GetSection("App"));
             services.AddSingleton<AppSettings>(serviceProvider =>
                 serviceProvider.GetRequiredService<IOptions<AppSettings>>().Value);
-            
+            services.AddSingleton<ICatridgeService, CatridgeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

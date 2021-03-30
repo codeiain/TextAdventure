@@ -11,6 +11,7 @@ namespace GameServer.Models.Settings
 
         public MongoSettings MongoSettings { get; set; }
         public RedisSettings RedisSettings { get; set; }
+        public string CatridgeServerAddress { get; set; }
         
         public string CartridgeLocation { get; set; }
     }
