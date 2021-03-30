@@ -17,16 +17,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Move to Client
-      run: pwd
-    - name: Move to Client
-      run: cd CacheServer
     - name: Restore dependencies
       run: dotnet restore ./CacheServer/CacheServer.csproj
     - name: Build Client
-      run: dotnet build --no-restore CacheServer.csproj
+      run: dotnet build --no-restore ./CacheServer/CacheServer.csproj
     - name: Test Client
-      run: dotnet test --no-build --verbosity normal CacheServer.csproj
+      run: dotnet test --no-build --verbosity normal ./CacheServer/CacheServer.csproj
 
   build-CartridgeServer:
     runs-on: ubuntu-latest
@@ -36,14 +32,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Move to Client
-      run: cd CartridgeServer
     - name: Restore dependencies
-      run: dotnet restore CartridgeServer.csproj
+      run: dotnet restore ./CartridgeServer/CartridgeServer.csproj
     - name: Build Cartridge Server
-      run: dotnet build --no-restore CartridgeServer.csproj
+      run: dotnet build --no-restore ./CartridgeServer/CartridgeServer.csproj
     - name: Test Cartridge Server
-      run: dotnet test --no-build --verbosity normal CartridgeServer.csproj
+      run: dotnet test --no-build --verbosity normal ./CartridgeServer/CartridgeServer.csproj
 
   build-ChatServer:
     runs-on: ubuntu-latest
@@ -53,14 +47,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Move to Client
-      run: cd ChatServer
     - name: Restore dependencies
-      run: dotnet restore ChatServer.csproj
+      run: dotnet restore ./ChatServer/ChatServer.csproj
     - name: Build Cartridge Server
-      run: dotnet build --no-restore ChatServer.csproj
+      run: dotnet build --no-restore ./ChatServer/ChatServer.csproj
     - name: Test Cartridge Server
-      run: dotnet test --no-build --verbosity normal ChatServer.csproj
+      run: dotnet test --no-build --verbosity normal ./ChatServer/ChatServer.csproj
 
   build-ClientApiServer:
     runs-on: ubuntu-latest
@@ -70,14 +62,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Move to Client
-      run: cd ClientApiServer
     - name: Restore dependencies
-      run: dotnet restore ClientApiServer.csproj
+      run: dotnet restore ./ClientApiServer/ClientApiServer.csproj
     - name: Build Cartridge Server
-      run: dotnet build --no-restore ClientApiServer.csproj
+      run: dotnet build --no-restore ./ClientApiServer/ClientApiServer.csproj
     - name: Test Cartridge Server
-      run: dotnet test --no-build --verbosity normal ClientApiServer.csproj
+      run: dotnet test --no-build --verbosity normal ./ClientApiServer/ClientApiServer.csproj
 
   build-GameApiServer:
     runs-on: ubuntu-latest
@@ -87,14 +77,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Move to Client
-      run: cd GameApiServer
     - name: Restore dependencies
-      run: dotnet restore GameApiServer.csproj
+      run: dotnet restore ./GameApiServer/GameApiServer.csproj
     - name: Build Cartridge Server
-      run: dotnet build --no-restore GameApiServer.csproj
+      run: dotnet build --no-restore ./GameApiServer/GameApiServer.csproj
     - name: Test Cartridge Server
-      run: dotnet test --no-build --verbosity normal GameApiServer.csproj
+      run: dotnet test --no-build --verbosity normal ./GameApiServer/GameApiServer.csproj
 
   build-GameServer:
     runs-on: ubuntu-latest
@@ -107,8 +95,8 @@ jobs:
     - name: Move to Client
       run: cd GameServer
     - name: Restore dependencies
-      run: dotnet restore GameServer.csproj
+      run: dotnet restore ./GameServer/GameServer.csproj
     - name: Build Cartridge Server
-      run: dotnet build --no-restore GameServer.csproj
+      run: dotnet build --no-restore ./GameServer/GameServer.csproj
     - name: Test Cartridge Server
-      run: dotnet test --no-build --verbosity normal GameServer.csproj
+      run: dotnet test --no-build --verbosity normal ./GameServer/GameServer.csproj
