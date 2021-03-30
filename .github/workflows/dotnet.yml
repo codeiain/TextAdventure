@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-client:
+  build-CacheServer:
 
     runs-on: ubuntu-latest
 
@@ -18,17 +18,84 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Move to Client
-      run: cd ClientServer
+      run: cd CacheServer
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore CacheServer.csproj
     - name: Build Client
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore CacheServer.csproj
     - name: Test Client
-      run: dotnet test --no-build --verbosity normal
-  build-game:
+      run: dotnet test --no-build --verbosity normal CacheServer.csproj
 
+  build-CartridgeServer:
     runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Move to Client
+      run: cd CartridgeServer
+    - name: Restore dependencies
+      run: dotnet restore CartridgeServer.csproj
+    - name: Build Cartridge Server
+      run: dotnet build --no-restore CartridgeServer.csproj
+    - name: Test Cartridge Server
+      run: dotnet test --no-build --verbosity normal CartridgeServer.csproj
 
+  build-ChatServer:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Move to Client
+      run: cd ChatServer
+    - name: Restore dependencies
+      run: dotnet restore ChatServer.csproj
+    - name: Build Cartridge Server
+      run: dotnet build --no-restore ChatServer.csproj
+    - name: Test Cartridge Server
+      run: dotnet test --no-build --verbosity normal ChatServer.csproj
+
+  build-ClientApiServer:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Move to Client
+      run: cd ClientApiServer
+    - name: Restore dependencies
+      run: dotnet restore ClientApiServer.csproj
+    - name: Build Cartridge Server
+      run: dotnet build --no-restore ClientApiServer.csproj
+    - name: Test Cartridge Server
+      run: dotnet test --no-build --verbosity normal ClientApiServer.csproj
+
+  build-GameApiServer:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Move to Client
+      run: cd GameApiServer
+    - name: Restore dependencies
+      run: dotnet restore GameApiServer.csproj
+    - name: Build Cartridge Server
+      run: dotnet build --no-restore GameApiServer.csproj
+    - name: Test Cartridge Server
+      run: dotnet test --no-build --verbosity normal GameApiServer.csproj
+
+  build-GameServer:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -38,26 +105,8 @@ jobs:
     - name: Move to Client
       run: cd GameServer
     - name: Restore dependencies
-      run: dotnet restore
-    - name: Build Game Server
-      run: dotnet build --no-restore
-    - name: Test Game Server
-      run: dotnet test --no-build --verbosity normal
-  build-CartageServer:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Move to CartageServer
-      run: cd CartageServer
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build Cartage Server
-      run: dotnet build --no-restore
-    - name: Test Cartage Server
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet restore GameServer.csproj
+    - name: Build Cartridge Server
+      run: dotnet build --no-restore GameServer.csproj
+    - name: Test Cartridge Server
+      run: dotnet test --no-build --verbosity normal GameServer.csproj
