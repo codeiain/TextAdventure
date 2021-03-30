@@ -1,4 +1,4 @@
-# TextAdventure
+# TextAdventure [![.NET](https://github.com/codeiain/TextAdventure/actions/workflows/dotnet.yml/badge.svg)](https://github.com/codeiain/TextAdventure/actions/workflows/dotnet.yml)
 
 Text Adventure (name still a work in progress) is a multiplayer text based adventure platform.
 
