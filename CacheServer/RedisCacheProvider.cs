@@ -13,7 +13,7 @@ namespace CacheServer
         public RedisCacheProvider(AppSettings config)
         {
             _config = config;
-            _endPoint = new RedisEndpoint(_config.RedisSettings.Host, int.Parse(_config.RedisSettings.Port), _config.RedisSettings.Password, long.Parse(_config.RedisSettings.DatabaseID));
+            _endPoint = new RedisEndpoint(_config.RedisSettings.Host, int.Parse(_config.RedisSettings.Port), _config.RedisSettings.Password, long.Parse(_config.RedisSettings.DatabaseId));
         }
 
         public void Set<T>(string key, T value)

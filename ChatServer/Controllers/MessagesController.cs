@@ -8,17 +8,17 @@ namespace ChatServer.Controllers
     [Route("[controller]")]
     public class MessagesController : Controller
     {
-        private NotificationsMessageHandler _notificationsMessageHandler { get; set; }
+        private NotificationsMessageHandler NotificationsMessageHandler { get; set; }
 
         public MessagesController(NotificationsMessageHandler notificationsMessageHandler)
         {
-            _notificationsMessageHandler = notificationsMessageHandler;
+            NotificationsMessageHandler = notificationsMessageHandler;
         }
 
         [HttpGet]
         public async Task SendMessage([FromQuery]string message)
         {
-           await _notificationsMessageHandler.SendMessageToAllAsync(message);
+           await NotificationsMessageHandler.SendMessageToAllAsync(message);
         }
     }
 }
