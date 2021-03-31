@@ -16,3 +16,4 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_CARTRIDG_APP_NAME }} #Must be unique in Heroku
           heroku_email: "${{ secrets.HEROKU_EMAIL }}"
           usedocker: true
+          appdir: "CartridgeServer"
