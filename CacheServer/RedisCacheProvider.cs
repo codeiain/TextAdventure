@@ -18,7 +18,7 @@ namespace CacheServer
 
         public void Set<T>(string key, T value)
         {
-            this.Set(key, value, TimeSpan.Zero);
+            this.Set(key, value, TimeSpan.Zero); 
         }
 
         public void Set<T>(string key, T value, TimeSpan timeout)
