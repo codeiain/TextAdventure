@@ -1,42 +1,28 @@
-﻿using CatridgeServer;
-using GameServer.Models.Settings;
-using Grpc.Net.Client;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
+﻿using System;
+using GameServer.DTO;
+using GameServer.Models;
 
 namespace GameServer.Services
 {
     public class GameService : IGameService
     {
-        private readonly ILogger<GameService> _logger;
-        private AppSettings _config;
-        private readonly ICatridgeService _catridgeService;
-
-        public GameService(ILogger<GameService> logger, AppSettings config, ICatridgeService catridgeService)
+        private IRepository<GameSchema> _gameRepository;
+        private ICartridgeService _cartridgeService;
+        public GameService(IRepository<GameSchema> gameRepository, ICartridgeService cartridgeService)
         {
-            _logger = logger;
-            _config = config;
-            _catridgeService = catridgeService;
+            _gameRepository = gameRepository;
+            _cartridgeService = cartridgeService;
         }
-
-        public Task<CatridgeReply> CreateNewGame(CatridgeRequest request)
+        
+        public bool CreateNewGame(string cartridgeName)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<JoinResponce> JoinGame(GameRequest request)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<GameResponce> GetGameStateOfPlater(GameRequest request)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<GameResponce> SendCommand(GameRequest request)
-        {
-            throw new System.NotImplementedException();
+            
+            var game = new GameSchema(_cartridgeService)
+            {
+                CartridgeName = cartridgeName
+            };
+            game.PreSave();
+            return _gameRepository.Insert(game);
         }
     }
 }
