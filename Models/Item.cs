@@ -9,8 +9,9 @@ namespace Models
         public string Name { get; set; }
         public string Details { get; set; }
         public List<Trigger> Triggers { get; set; }
-        public string Destination { get; set; }
+        public ItemDestination Destination { get; set; }
         public List<Subitem> Subitems { get; set; }
-        public string Type { get; set; }
+        public ItemType Type { get; set; }
+        public List<Stats> Statses { get; set; }
     }
 }

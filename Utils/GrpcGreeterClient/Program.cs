@@ -12,9 +12,9 @@ namespace GrpcGreeterClient
             using var channel = GrpcChannel.ForAddress("https://localhost:5001");
             var t = new Cartridge.CartridgeClient(channel);
 
-            //var id =await t.CreateCartridgeAsync(new CreateRequest() {Name = "Empty"});
+            //var id = await t.CreateCartridgeAsync(new CreateRequest() {Name = "Empty"});
 
-            var reply = await t.GetCartageAsync(new CartridgeRequest() { Id = "597521a7-5c7e-4090-8c01-39721d1daf59" });
+            var reply = await t.GetCartageAsync(new CartridgeRequest() { Id = "1e6cae03-9901-4736-9e24-927608978878" });
 
            
             Console.WriteLine("Greeting: " + reply.Message);
