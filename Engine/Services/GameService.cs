@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Grpc.Core;
 
-namespace GameServer.Services
+namespace Engine.Services
 {
-    public class GameService : GameServer.GameServerBase, IGameService
+    public class GameService : GameServerGRPC.GameServerGRPCBase, IGameService
     {
 
         private ICartridgeService _cartridgeService;
@@ -13,10 +13,10 @@ namespace GameServer.Services
             _cartridgeService = cartridgeService;
         }
 
-        public override async Task<CatridgeReply> CreateNewGame(CatridgeRequest request, ServerCallContext context)
+        public override async Task<GameCatridgeReply> CreateNewGame(GameCatridgeRequest request, ServerCallContext context)
         {
             var cart = await _cartridgeService.GetCartage(request.Id);
-            return new CatridgeReply(){ Message = cart.ToString()};
+            return new GameCatridgeReply(){ Message = cart.ToString()};
         }
 
         public override async Task<JoinResponce> JoinGame(GameRequest request, ServerCallContext context)

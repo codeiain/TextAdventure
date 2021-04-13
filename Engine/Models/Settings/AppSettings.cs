@@ -1,5 +1,5 @@
 
-namespace GameServer.Models.Settings
+namespace Engine.Models.Settings
 {
     public class AppSettings
     {

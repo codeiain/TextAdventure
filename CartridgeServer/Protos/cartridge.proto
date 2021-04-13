@@ -2,17 +2,13 @@ syntax = "proto3";
 
 option csharp_namespace = "CartridgeServer";
 
-package cartridge;
+package CatridgeServerGRPC;
 
 // The greeting service definition.
-service Cartridge {
+service CatridgeServerGRPC {
 	// Sends a greeting
-	rpc GetCartage (CartridgeRequest) returns (CartridgeReply);
-	rpc CreateCartridge(CreateRequest) returns (CartridgeReply);
-}
-
-message CreateRequest {
-	string name = 1;
+	rpc GetCartridge (CartridgeRequest) returns (CartridgeReply);
+	rpc CreateCartridge (CreateRequest) returns (CartridgeReply);
 }
 
 // The request message containing the user's name.
@@ -22,5 +18,9 @@ message CartridgeRequest {
 
 // The response message containing the greetings.
 message CartridgeReply {
+	string message = 1;
+}
+
+message CreateRequest {
 	string message = 1;
 }

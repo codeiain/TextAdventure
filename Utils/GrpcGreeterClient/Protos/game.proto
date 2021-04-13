@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "GameApiServer";
+option csharp_namespace = "GrpcGreeterClient";
 
 package GameServerGRPC;
 

@@ -7,19 +7,21 @@ using Microsoft.Extensions.Logging;
 using Models;
 using Newtonsoft.Json;
 
+
 namespace CartridgeServer.Services
 {
-    public class CartridgeService : Cartridge.CartridgeBase
+    public class CartridgeService : CatridgeServerGRPC.CatridgeServerGRPCBase
     {
         private readonly ILogger<CartridgeService> _logger;
         private readonly IMongoRepository<CartridgeServer.Models.Cartridge> _mongoRepository;
+
         public CartridgeService(ILogger<CartridgeService> logger, IMongoRepository<CartridgeServer.Models.Cartridge> mongoRepository)
         {
             _logger = logger;
             _mongoRepository = mongoRepository;
         }
 
-        public override async  Task<CartridgeReply> GetCartage(CartridgeRequest request, ServerCallContext context)
+        public override async  Task<CartridgeReply> GetCartridge(CartridgeRequest request, ServerCallContext context)
         {
             var result = await _mongoRepository.FindOneAsync(x=>x.GameId == request.Id);
             return new CartridgeReply

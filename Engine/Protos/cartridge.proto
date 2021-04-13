@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-option csharp_namespace = "CatridgeServer";
+option csharp_namespace = "Engine";
 
-package CatridgeServer;
+package CatridgeServerGRPC;
 
 // The greeting service definition.
-service Catridge {
+service CatridgeServerGRPC {
 	// Sends a greeting
-	rpc GetCatridge (CatridgeRequest) returns (CatridgeReply);
+	rpc GetCartridge (CatridgeRequest) returns (CatridgeReply);
 }
 
 // The request message containing the user's name.

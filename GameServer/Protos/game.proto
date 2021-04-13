@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "GameServer";
 
-package GameServer;
+package GameServerGRPC;
 
 // The greeting service definition.
 service GameServer {

@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using GameAPIServer;
+
 using GameApiServer.Models.Settings;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Logging;
@@ -11,18 +11,18 @@ namespace GameApiServer.Services
     {
         private readonly ILogger<GameService> _logger;
         private AppSettings _config;
-        private readonly GameServer.GameServerClient _client;
+        private readonly GameServerGRPC.GameServerGRPCClient _client;
 
         public GameService(ILogger<GameService> logger, AppSettings config)
         {
             _logger = logger;
             _config = config;
             var channel = GrpcChannel.ForAddress(_config.GameServerAddress);
-            _client = new GameServer.GameServerClient(channel);
+            _client = new GameServerGRPC.GameServerGRPCClient(channel);
         }
 
 
-        public async Task<CatridgeReply> CreateNewGame(CatridgeRequest request)
+        public async Task<GameCatridgeReply> CreateNewGame(GameCatridgeRequest request)
         {
             return await _client.CreateNewGameAsync(request);
         }

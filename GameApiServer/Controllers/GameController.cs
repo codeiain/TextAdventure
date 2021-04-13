@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GameAPIServer;
 using GameApiServer.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,16 +20,16 @@ namespace GameApiServer.Controllers
 
         [HttpPost]
         [Route(("/"))]
-        public async Task<CatridgeReply> CreateNewGame([FromBody] string catridgeId)
+        public async Task<GameCatridgeReply> CreateNewGame([FromBody] string catridgeId)
         {
-            return await _gameService.CreateNewGame(new GameAPIServer.CatridgeRequest(){ Id = catridgeId });
+            return await _gameService.CreateNewGame(new GameCatridgeRequest(){ Id = catridgeId });
         }
         
         [HttpPost]
         [Route("{gameId}")]
         public async Task<JoinResponce> JoinGame(Guid gameId,[FromBody] string playerInfo)
         {
-            var newGameState = new GameAPIServer.GameRequest()
+            var newGameState = new GameRequest()
             {
                 GameId = gameId.ToString(),
                 PlayerName = playerInfo
