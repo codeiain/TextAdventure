@@ -7,11 +7,11 @@ package GameStateServerGRPC;
 // The greeting service definition.
 service GameStateServerGRPC {
 	// Sends a greeting
-	rpc CreateNewGameState (GameRequest) returns (GameStateReply);
+	rpc CreateNewGameState (GameStateRequest) returns (GameStateReply);
 }
 
 // The request message containing the user's name.
-message GameRequest {
+message GameStateRequest {
 	string message = 1;
 }
 

@@ -4,6 +4,6 @@ namespace Engine.Services
 {
     public interface IGameStateService
     {
-        Task<GameStateReply> CreateNewGameState(GameRequest request);
+        Task<GameStateReply> CreateNewGameState(GameStateRequest request);
     }
 }

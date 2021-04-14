@@ -20,7 +20,7 @@ namespace Engine.Services
 
         }
         //TODO: clean up the models here
-        public async Task<GameStateReply> CreateNewGameState(GameRequest request)
+        public async Task<GameStateReply> CreateNewGameState(GameStateRequest request)
         {
             return await _client.CreateNewGameStateAsync(request);
         }

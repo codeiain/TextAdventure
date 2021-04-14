@@ -10,11 +10,6 @@ service PlayerStateServerGRPC {
 	rpc CreatePlayerState (CreateRequest) returns (PlayerStateReply);
 }
 
-// The request message containing the user's name.
-message CartridgeRequest {
-	string id = 1;
-}
-
 // The response message containing the greetings.
 message PlayerStateReply {
 	string message = 1;

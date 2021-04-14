@@ -9,6 +9,7 @@ using Engine.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace Engine.Middleware
@@ -17,11 +18,13 @@ namespace Engine.Middleware
     {
         private readonly RequestDelegate next;
         private readonly ErrorsInformation errorsInformation;
+        private readonly ILogger _logger;
 
-        public ExceptionMiddleware(RequestDelegate next, ErrorsInformation errorsInformation)
+        public ExceptionMiddleware(RequestDelegate next, ErrorsInformation errorsInformation, ILogger logger)
         {
             this.next = next;
             this.errorsInformation = errorsInformation;
+            this._logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -32,6 +35,7 @@ namespace Engine.Middleware
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, $"Something went wrong cause unexpected exception.");
                 await handleExceptionAsync(httpContext, ex);
             }
         }
