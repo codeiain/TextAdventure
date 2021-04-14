@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "GameStateServer";
+option csharp_namespace = "Engine";
 
 package GameStateServerGRPC;
 

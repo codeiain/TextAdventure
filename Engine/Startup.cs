@@ -32,6 +32,8 @@ namespace Engine
                 serviceProvider.GetRequiredService<IOptions<AppSettings>>().Value);
             services.AddSingleton<IGameService, GameService>();
             services.AddSingleton<ICartridgeService, CartridgeService>();
+            services.AddSingleton<IGameStateService, GameStateService>();
+            services.AddSingleton<IPlayerStateService, PlayerStateService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
