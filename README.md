@@ -12,10 +12,7 @@ Text Adventure (name still a work in progress) is a multiplayer text based adven
 
 The players be able to forged adventuring parts and dive in to the world of text based adventures.
 
-The application will be built using tha following layout.
-
-Everything marked in blue is part of the second phase of the project.
-
+This started as a exercise in learning gPRC with .net core and expaneded from there
 ## Application Overview
 
 <img src="https://yuml.me/beastingames/text-adventure.jpg"/>
