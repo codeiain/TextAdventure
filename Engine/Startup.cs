@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Engine.Middleware;
 using Engine.Models.Settings;
 using Engine.Services;
 using Microsoft.Extensions.Configuration;
@@ -43,6 +44,7 @@ namespace Engine
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseRouting();
 
