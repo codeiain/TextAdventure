@@ -16,4 +16,7 @@ The application will be built using tha following layout.
 
 Everything marked in blue is part of the second phase of the project.
 
-<img src="serverlayout.png" style="float: left; margin-right: 10px; width:500px;" />
+
+## User Diagram
+
+<img src="https://yuml.me/beastingames/13bb47e1.jpg" />
