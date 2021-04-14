@@ -1,14 +1,13 @@
 syntax = "proto3";
 
-option csharp_namespace = "CartridgeServer";
+option csharp_namespace = "PlayerStateServer";
 
-package CatridgeServerGRPC;
+package PlayerStateServerGRPC;
 
 // The greeting service definition.
-service CatridgeServerGRPC {
+service PlayerStateServerGRPC {
 	// Sends a greeting
-	rpc GetCartridge (CartridgeRequest) returns (CartridgeReply);
-	rpc CreateCartridge (CreateRequest) returns (CartridgeReply);
+	rpc CreatePlayerState (CreateRequest) returns (CartridgeReply);
 }
 
 // The request message containing the user's name.
@@ -22,5 +21,6 @@ message CartridgeReply {
 }
 
 message CreateRequest {
-	string message = 1;
+	string Game = 1;
+	string PlayerName=2;
 }

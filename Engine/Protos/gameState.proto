@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "GameStateServer";
+
+package GameStateServerGRPC;
+
+// The greeting service definition.
+service GameStateServerGRPC {
+	// Sends a greeting
+	rpc CreateNewGameState (GameRequest) returns (GameStateReply);
+}
+
+// The request message containing the user's name.
+message GameRequest {
+	string message = 1;
+}
+
+// The response message containing the greetings.
+message GameStateReply {
+	string message = 1;
+}

@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\cartridge.proto" GrpcServices="Server" />
+    <None Remove="Protos\gameState.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\gameState.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

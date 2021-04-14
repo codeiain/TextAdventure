@@ -45,7 +45,7 @@ namespace GameStateServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<CartridgeService>();
+                endpoints.MapGrpcService<GameStateService>();
 
                 endpoints.MapGet("/", async context =>
                 {

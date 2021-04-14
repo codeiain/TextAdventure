@@ -7,16 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Protos\cartridge.proto" />
-    <None Remove="Protos\game.proto" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Protobuf Include="Protos\cartridge.proto">
       <GrpcService>Client</GrpcService>
     </Protobuf>
     <Protobuf Include="Protos\game.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\gameState.proto" GrpcServices="Client" />
     <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\playerState.proto" GrpcServices="Client" />
   </ItemGroup>
 
   <ItemGroup>
