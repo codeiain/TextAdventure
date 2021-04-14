@@ -16,6 +16,9 @@ The application will be built using tha following layout.
 
 Everything marked in blue is part of the second phase of the project.
 
+## Application Overview
+
+<img src="https://yuml.me/beastingames/text-adventure.jpg"/>
 
 ## User Diagram
 
