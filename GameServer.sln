@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameStateServer", "GameStat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlayerStateServer", "PlayerStateServer\PlayerStateServer.csproj", "{32034F27-F1D7-4BEA-BB53-DEC06EB064C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{F47F3BAD-601A-444E-BAD5-EB5F3F5E3EC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,10 @@ Global
 		{32034F27-F1D7-4BEA-BB53-DEC06EB064C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32034F27-F1D7-4BEA-BB53-DEC06EB064C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32034F27-F1D7-4BEA-BB53-DEC06EB064C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F47F3BAD-601A-444E-BAD5-EB5F3F5E3EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F47F3BAD-601A-444E-BAD5-EB5F3F5E3EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F47F3BAD-601A-444E-BAD5-EB5F3F5E3EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F47F3BAD-601A-444E-BAD5-EB5F3F5E3EC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,7 +22,7 @@ namespace PlayerStateServer.Services
             _mongoRepository = mongoRepository;
         }
 
-        public override async Task<GameStateReply> CreatePlayerState(CreateRequest request, ServerCallContext context)
+        public override async Task<CreatePlayerStateReply> CreatePlayerState(CreatePlayerStateRequest request, ServerCallContext context)
         {
             var PlayerState = new PlayerGameState();
             PlayerState.Game = JsonConvert.DeserializeObject<Cartridge>(request.Game);
@@ -40,7 +40,7 @@ namespace PlayerStateServer.Services
 
             //TODO: Add Call to Cache server here to store the player name under the game id in redis
 
-            return new GameStateReply()
+            return new CreatePlayerStateReply()
             {
                 Message = JsonConvert.SerializeObject(PlayerState)
             };

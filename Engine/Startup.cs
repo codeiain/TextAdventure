@@ -8,10 +8,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Engine.Constants;
+using Engine.Exceptions;
 using Engine.Middleware;
 using Engine.Models.Settings;
 using Engine.Services;
 using Microsoft.Extensions.Configuration;
+using Logger;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Engine
@@ -35,6 +39,10 @@ namespace Engine
             services.AddSingleton<ICartridgeService, CartridgeService>();
             services.AddSingleton<IGameStateService, GameStateService>();
             services.AddSingleton<IPlayerStateService, PlayerStateService>();
+            services.AddSingleton<ILoggerFactory, LoggerFactory>();
+            services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
+            services.AddSingleton<ErrorsInformation>();
+            services.AddScoped<FriendlyErrorResponseFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

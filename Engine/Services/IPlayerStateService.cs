@@ -4,6 +4,6 @@ namespace Engine.Services
 {
     public interface IPlayerStateService
     {
-        Task<PlayerStateReply> CreateNewGameState(CreateRequest request);
+        Task<CreatePlayerStateReply> CreateNewGameState(CreatePlayerStateRequest request);
     }
 }

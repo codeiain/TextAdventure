@@ -7,15 +7,20 @@ package PlayerStateServerGRPC;
 // The greeting service definition.
 service PlayerStateServerGRPC {
 	// Sends a greeting
-	rpc CreatePlayerState (CreateRequest) returns (PlayerStateReply);
+	rpc CreatePlayerState (CreatePlayerStateRequest) returns (CreatePlayerStateReply);
+}
+
+// The request message containing the user's name.
+message CartridgeRequest {
+	string id = 1;
 }
 
 // The response message containing the greetings.
-message PlayerStateReply {
+message CreatePlayerStateReply {
 	string message = 1;
 }
 
-message CreateRequest {
+message CreatePlayerStateRequest {
 	string Game = 1;
 	string PlayerName=2;
 }

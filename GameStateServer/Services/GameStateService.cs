@@ -5,6 +5,7 @@ using GameStateServer.Models;
 using GameStateServer.Models.Settings;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
+using Models;
 using Newtonsoft.Json;
 
 namespace GameStateServer.Services
@@ -23,8 +24,13 @@ namespace GameStateServer.Services
         public override async Task<GameStateReply> CreateNewGameState(GameRequest request, ServerCallContext context)
         {
             var newId = Guid.NewGuid();
-            GameState currentState = JsonConvert.DeserializeObject<GameState>(request.Message);
-            currentState.GameId = newId;
+            var game = JsonConvert.DeserializeObject<Cartridge>(request.Message);
+            var currentState = new GameState()
+            {
+                GameId = newId,
+                Scenes = game.Locations
+            };
+
             await _mongoRepository.InsertOneAsync(currentState);
 
             return new GameStateReply()
