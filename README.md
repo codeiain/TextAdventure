@@ -1,6 +1,5 @@
 # TextAdventure
 
-Docs can be found here [https://codeiain.gitbook.io/textadventure/](https://codeiain.gitbook.io/textadventure/)
 
 ## Status
 
