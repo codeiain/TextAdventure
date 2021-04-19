@@ -1,5 +1,12 @@
 # Table of contents
 
 * [TextAdventure](README.md)
-* [GameAPIServer](gameapiserver.md)
+
+## Game Api Server
+
+* [GameAPIServer](game-api-server/gameapiserver.md)
+
+## Cartridge Server
+
+* [Overview](cartridge-server/overview.md)
 
