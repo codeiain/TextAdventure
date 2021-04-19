@@ -1,5 +1,7 @@
 # TextAdventure 
 
+Docs can be found here https://codeiain.gitbook.io/textadventure/
+
 ## Status
 [![.NET](https://github.com/codeiain/TextAdventure/actions/workflows/dotnet.yml/badge.svg)](https://github.com/codeiain/TextAdventure/actions/workflows/dotnet.yml)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=codeiain_TextAdventure&metric=bugs)](https://sonarcloud.io/dashboard?id=codeiain_TextAdventure)
