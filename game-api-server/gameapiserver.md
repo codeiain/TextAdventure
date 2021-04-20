@@ -32,7 +32,7 @@ The Cartridge Id
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="" path="/:id" %}
+{% api-method method="post" host="" path="/:gameId" %}
 {% api-method-summary %}
 Join Game
 {% endapi-method-summary %}
@@ -64,7 +64,7 @@ Join Game
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/:id/state/:playerName" %}
+{% api-method method="get" host="" path="/:id/state/:playerId" %}
 {% api-method-summary %}
 Get State for Player
 {% endapi-method-summary %}
@@ -75,11 +75,15 @@ Get State for Player
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
+{% api-method-query-parameters %}
+{% api-method-parameter name="playerId" type="string" required=false %}
 
 {% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+
+{% api-method-parameter name="id" type="string" required=false %}
+
+{% endapi-method-parameter %}
+{% endapi-method-query-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -96,7 +100,7 @@ Get State for Player
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="post" host="" path="/:gameId/:Playername/command" %}
+{% api-method method="post" host="" path="/:gameId/:playerId/command" %}
 {% api-method-summary %}
 Send Command
 {% endapi-method-summary %}
@@ -107,11 +111,15 @@ Send Command
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
+{% api-method-query-parameters %}
+{% api-method-parameter name="playerId" type="string" required=false %}
 
 {% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+
+{% api-method-parameter name="gameId" type="string" required=false %}
+
+{% endapi-method-parameter %}
+{% endapi-method-query-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
