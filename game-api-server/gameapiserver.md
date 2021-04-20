@@ -6,7 +6,7 @@ Create Game
 {% endapi-method-summary %}
 
 {% api-method-description %}
-This endpoint allows you to get free cakes.
+Creates a new GameState based on the Cartridge Id.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -25,7 +25,7 @@ The Cartridge Id
 {% endapi-method-response-example-description %}
 
 ```
-
+{ gameid: string}
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
@@ -38,7 +38,7 @@ Join Game
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+Creates a new Playerstate for the player based on the game Id
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -48,6 +48,12 @@ Join Game
 
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="playername" type="string" required=false %}
+
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -64,13 +70,13 @@ Join Game
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="get" host="" path="/:id/state/:playerId" %}
+{% api-method method="get" host="" path="/:gameid/state/:playerId" %}
 {% api-method-summary %}
 Get State for Player
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
+Gets the current player state for a game based on the playerId, and Game Id
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -120,6 +126,12 @@ Send Command
 
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="Command" type="string" required=false %}
+
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
