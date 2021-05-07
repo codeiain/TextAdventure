@@ -10,7 +10,7 @@ namespace GameApiServer.Controllers
     [Route("[controller]")]
     public class GameController : ControllerBase
     {
-        private IGameService _gameService;
+        private readonly IGameService _gameService;
 
         public GameController(IGameService gameService)
         {
@@ -20,9 +20,9 @@ namespace GameApiServer.Controllers
 
         [HttpPost]
         [Route(("/"))]
-        public async Task<GameCatridgeReply> CreateNewGame([FromBody] string catridgeId)
+        public async Task<GameCatridgeReply> CreateNewGame([FromBody] string cartridgeId)
         {
-            return await _gameService.CreateNewGame(new GameCatridgeRequest(){ Id = catridgeId });
+            return await _gameService.CreateNewGame(new GameCatridgeRequest(){ Id = cartridgeId });
         }
         
         [HttpPost]
@@ -35,6 +35,8 @@ namespace GameApiServer.Controllers
                 PlayerName = playerInfo
                 
             };
+
+
             return await _gameService.JoinGame(newGameState);
         }
 
@@ -42,13 +44,14 @@ namespace GameApiServer.Controllers
         [Route("{gameId}/state/{playerName}")]
         public void GetGameStateOfPlayer(Guid gameId, string playerName)
         {
-            
+            // Gets the Players status from the PlayerStateServer
         }
 
         [HttpPost]
         [Route("{gameId}/{playerName}/command")]
         public void SendCommandToGame(Guid gameId, string playerName, [FromBody] string action)
         {
+            // Sends the command to the engine which updates the states based on the action.
 
         }
     }

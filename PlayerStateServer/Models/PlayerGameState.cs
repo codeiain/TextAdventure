@@ -10,7 +10,7 @@ namespace PlayerStateServer.Models
     [BsonCollection("PlayerGameState")]
     public class PlayerGameState : Document
     {
-        public Cartridge Game { get; set; }
+        public GameState Game { get; set; }
         public string PlayerName { get; set; }
         public string PlayerKey { get; set; }
         public string CurrentScene { get; set; }
