@@ -24,17 +24,20 @@ namespace PlayerStateServer.Services
 
         public override async Task<CreatePlayerStateReply> CreatePlayerState(CreatePlayerStateRequest request, ServerCallContext context)
         {
+            var game = JsonConvert.DeserializeObject<GameState>(request.Game);
+
+            var newId = Guid.NewGuid();
             var PlayerState = new PlayerGameState();
-            PlayerState.Game = JsonConvert.DeserializeObject<Cartridge>(request.Game);
-            PlayerState.PlayerKey = Guid.NewGuid().ToString();
+            PlayerState.Game = game;
+            PlayerState.PlayerKey = newId.ToString();
+            PlayerState.PlayerName = request.PlayerName;
             PlayerState.Inventory = new Inventory();
             PlayerState.PlayerHp = 10;
             PlayerState.WalkedEast = 0;
             PlayerState.WalkedNorth = 0;
             PlayerState.WalkedSouth = 0;
             PlayerState.WalkedWest = 0;
-            PlayerState.PlayerKey = request.PlayerName;
-            PlayerState.CurrentScene = PlayerState.Game.Locations.FirstOrDefault()?.Name;
+            PlayerState.CurrentScene = game.Scenes.FirstOrDefault()?.Name;
 
             await _mongoRepository.InsertOneAsync(PlayerState);
 

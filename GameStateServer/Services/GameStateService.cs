@@ -27,7 +27,7 @@ namespace GameStateServer.Services
             var game = JsonConvert.DeserializeObject<Cartridge>(request.Message);
             var currentState = new GameState()
             {
-                GameId = newId,
+                GameId = newId.ToString(),
                 Scenes = game.Locations
             };
 
@@ -35,8 +35,21 @@ namespace GameStateServer.Services
 
             return new GameStateReply()
             {
-                Message = newId.ToString()
+                Id = newId.ToString(),
+                Message = JsonConvert.SerializeObject(currentState)
             };
         }
+
+        public override async Task<GameStateReply> GetGameState(GameStateRequest request, ServerCallContext context)
+        {
+            var gameState = await _mongoRepository.FindOneAsync(x => x.GameId == request.Id);
+
+            return new GameStateReply()
+            {
+                Id = gameState.GameId,
+                Message = JsonConvert.SerializeObject(gameState)
+            };
+        }
+
     }
 }

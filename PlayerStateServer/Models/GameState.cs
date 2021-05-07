@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
-using GameStateServer.DTO;
-using Models;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace GameStateServer.Models
+namespace PlayerStateServer.Models
 {
-    [BsonCollection("GameState")]
-    public class GameState : Document
+    public class GameState
     {
         public string GameId { get; set; }
         public List<Location> Scenes { get; set; }

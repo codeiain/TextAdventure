@@ -24,5 +24,10 @@ namespace Engine.Services
         {
             return await _client.CreateNewGameStateAsync(request);
         }
+
+        public async Task<GameStateReply> GetGameState(string id)
+        {
+            return await _client.GetGameStateAsync(new GameStateRequest() { Message = id });
+        }
     }
 }

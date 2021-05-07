@@ -8,14 +8,16 @@ package GameStateServerGRPC;
 service GameStateServerGRPC {
 	// Sends a greeting
 	rpc CreateNewGameState (GameStateRequest) returns (GameStateReply);
+	rpc GetGameState (GameStateRequest) returns (GameStateReply);
 }
 
-// The request message containing the user's name.
-message GameStateRequest {
+message GameStateRequest{
 	string message = 1;
+	
 }
 
 // The response message containing the greetings.
 message GameStateReply {
-	string message = 1;
+	string id = 1;
+	string message = 2;
 }

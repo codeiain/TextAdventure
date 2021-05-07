@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Engine.Models;
 using Grpc.Core;
 using Newtonsoft.Json;
 
@@ -21,17 +22,25 @@ namespace Engine.Services
         public override async Task<GameCatridgeReply> CreateNewGame(GameCatridgeRequest request, ServerCallContext context)
         {
             var cart = await _cartridgeService.GetCartage(request.Id);
-            var gameState = await _gameStateService.CreateNewGameState(new GameStateRequest()
+            var reply = await _gameStateService.CreateNewGameState(new GameStateRequest()
             {
                 Message = JsonConvert.SerializeObject(cart)
             });
 
-            return new GameCatridgeReply(){ Message = cart.ToString()};
+            var gameState = JsonConvert.DeserializeObject<GameState>(reply.Message);
+            return new GameCatridgeReply(){ Message = gameState.GameId};
         }
 
         public override async Task<JoinResponce> JoinGame(GameRequest request, ServerCallContext context)
         {
-            throw new System.NotSupportedException();
+            var state = await _gameStateService.GetGameState(request.GameId);
+            var reply = await _playerStateService.CreateNewGameState(new CreatePlayerStateRequest()
+            {
+                Game = state.Message,
+                PlayerName = request.PlayerName 
+            });
+
+            return new JoinResponce() { Message = reply.Message };
         }
 
         public override async Task<GameResponce> GetGameStateOfPlayer(GameRequest request, ServerCallContext context)

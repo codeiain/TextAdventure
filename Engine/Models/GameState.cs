@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameStateServer.DTO;
 using Models;
 
-namespace GameStateServer.Models
+namespace Engine.Models
 {
-    [BsonCollection("GameState")]
-    public class GameState : Document
+
+    public class GameState
     {
         public string GameId { get; set; }
         public List<Location> Scenes { get; set; }
