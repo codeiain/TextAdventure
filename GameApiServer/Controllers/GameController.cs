@@ -22,13 +22,6 @@ namespace GameApiServer.Controllers
         [Route(("/"))]
         public async Task<GameCatridgeReply> CreateNewGame([FromBody] string cartridgeId)
         {
-            // ToDo: Create new Game State here based on the Cartridge requested.
-            var newGameState = new GameRequest()
-            {
-                GameId = cartridgeId,
-            };
-
-
             return await _gameService.CreateNewGame(new GameCatridgeRequest(){ Id = cartridgeId });
         }
         
@@ -36,7 +29,6 @@ namespace GameApiServer.Controllers
         [Route("{gameId}")]
         public async Task<JoinResponce> JoinGame(Guid gameId,[FromBody] string playerInfo)
         {
-            //TODO: Create new Player state for the game state Id and Player Name. 
             var newGameState = new GameRequest()
             {
                 GameId = gameId.ToString(),
